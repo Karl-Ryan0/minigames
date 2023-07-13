@@ -3,9 +3,11 @@ import random
 def hangman():
     word = "apple"
     guesses = []
-    tries = 1
+    tries = len(word)
 
-    print(f'The word is {word}')
-    tries -=1
-    print(f'You have {tries} guesses remaining')
+    while tries > 0:
+        guess = input("Enter your choice:")
+        print(f'You guessed {guess} and have {tries} tries left')
+        tries -= 1
+
 hangman()
