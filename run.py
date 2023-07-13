@@ -25,5 +25,6 @@ def hangman():
             print("You cannot enter more than one letter!")
         print(hangman_board)
         print(f'You have {tries} tries remaining')
-
+    if tries == 0:
+        print(f'Sorry, you did not guess the word! The word was {word}')
 hangman()
