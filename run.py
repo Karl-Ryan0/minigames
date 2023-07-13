@@ -1,3 +1,11 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+import random
+
+def hangman():
+    word = "apple"
+    guesses = []
+    tries = 1
+
+    print(f'The word is {word}')
+    tries -=1
+    print(f'You have {tries} guesses remaining')
+hangman()
