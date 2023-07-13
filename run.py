@@ -7,7 +7,7 @@ def hangman():
     tries = len(word)
 
     while tries > 0:
-        guess = input("Enter your choice:")
+        guess = input("Enter your choice:").lower()
         if len(guess) == 1:
             if guess not in guesses:
                 guesses.append(guess)
@@ -26,5 +26,5 @@ def hangman():
         print(hangman_board)
         print(f'You have {tries} tries remaining')
     if tries == 0:
-        print(f'Sorry, you did not guess the word! The word was {word}')
+        print(f'Sorry, you did not guess the word! The word was {word}.')
 hangman()
