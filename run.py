@@ -7,14 +7,18 @@ def hangman():
 
     while tries > 0:
         guess = input("Enter your choice:")
-        if guess not in guesses:
-            guesses.append(guess)
-            tries -= 1
-            hangman_board = ""
-            for letter in word:
-                hangman_board += letter
+        if len(guess) == 1:
+            if guess not in guesses:
+                guesses.append(guess)
+                print(guesses)
+                tries -= 1
+                hangman_board = ""
+                for letter in word:
+                    hangman_board += letter
+                else:
+                    hangman_board += "_"
             else:
-                hangman_board += "_"
+                print("You already guessed that!")
         else:
-            print("You already guessed that!")
+            print("You cannot enter more than one letter!")
 hangman()
