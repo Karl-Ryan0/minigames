@@ -55,13 +55,31 @@ def adventure():
     print("3. Check the bookshelf")
     print("4. Check the cabinet.")
 
-    adventure_choice = input(" Enter 1, 2, 3 or 4:")
+    while True:
+        adventure_choice = input(" Enter 1, 2, 3 or 4:")
 
-    if adventure_choice == "1":
-        key1_have = True
-        print("You find a key")
-        print(key1_have)
-        return
+
+        if adventure_choice == "1":
+            key1_have = True
+            delay_text("You find a key")
+            delay_text(key1_have)
+            return
+        elif adventure_choice == "2":
+            if key1_have == False:
+                delay_text("This door is locked")
+                return
+            else:
+                delay_text("You find another room")
+                return
+        elif adventure_choice == "3":
+            gun_have = True
+            delay_text("You find a gun in the bookshelf")
+            return
+        elif adventure_choice == "4":
+            delay_text("Nothing here")
+            return
+        else:
+            print("Please enter a valid selection:")
 
 
 def main():
