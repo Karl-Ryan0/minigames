@@ -48,38 +48,48 @@ def adventure():
     key1_have = False
     gun_have = False
     delay_text("Welcome to the adventure game! You wake up in a strange room.")
-    delay_text("You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
-    delay_text("What would you like to do?") 
-    delay_text("1. Open the door to the left")
-    print("2. Open the door to the right")
-    print("3. Check the bookshelf")
-    print("4. Check the cabinet.")
+    def room_one():
+        nonlocal key1_have
+        nonlocal gun_have
+        delay_text("You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
+        delay_text("What would you like to do?") 
+        delay_text("1. Open the door to the left")
+        print("2. Open the door to the right")
+        print("3. Check the bookshelf")
+        print("4. Check the cabinet")
+        print("5. Wait around to see what happens")
 
-    while True:
-        adventure_choice = input(" Enter 1, 2, 3 or 4:")
-
-
-        if adventure_choice == "1":
-            key1_have = True
-            delay_text("You find a key")
-            delay_text(key1_have)
-            return
-        elif adventure_choice == "2":
-            if key1_have == False:
-                delay_text("This door is locked")
+        while True:
+            adventure_choice = input(" Enter 1, 2, 3, 4 or 5:")
+            if adventure_choice == "1":
+                key1_have = True
+                delay_text("You find a key")
+                delay_text(key1_have)
                 return
+            elif adventure_choice == "2":
+                if key1_have == False:
+                    delay_text("This door is locked")
+                    return
+                else:
+                    delay_text("You find another room")
+                    return
+            elif adventure_choice == "3":
+                gun_have = True
+                delay_text("You find a gun in the bookshelf")
+                return
+            elif adventure_choice == "4":
+                delay_text("Nothing here")
+                return
+            elif adventure_choice == "5":
+                wait_in_room()
             else:
-                delay_text("You find another room")
-                return
-        elif adventure_choice == "3":
-            gun_have = True
-            delay_text("You find a gun in the bookshelf")
-            return
-        elif adventure_choice == "4":
-            delay_text("Nothing here")
-            return
-        else:
-            print("Please enter a valid selection:")
+                print("Please enter a valid selection:")
+    
+    def wait_in_room():
+        delay_text("You wait in the room for 5 minutes. Nothing happens.")
+        room_one()
+    
+    room_one()
 
 
 def main():
