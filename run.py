@@ -31,7 +31,22 @@ def hangman():
         if hangman_board == word:
             print(f'Congratultions! You guessed the word {word} correctly!')
             break
-            
+
     if tries == 0:
         print(f'Sorry, you did not guess the word! The word was {word}.')
-hangman()
+
+def main():
+    while True:
+        choice = input("Make your choice. You can choose between hangman, adventure or memory: ").lower()
+        if choice == "hangman":
+            hangman()
+            break
+        elif choice == "adventure":
+            print("Adventure chosen")
+            break
+        elif choice == "memory":
+            print("Memory chosen")
+            break
+        else:
+            print("Not a valid selection!")
+main()
