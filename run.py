@@ -91,6 +91,10 @@ def adventure():
     
     room_one()
 
+def memory():
+        sequence = random.randint(1, 9)
+        print(sequence)
+
 
 def main():
     while True:
@@ -108,4 +112,4 @@ def main():
             break
         else:
             delay_text("Not a valid selection!")
-adventure()
+memory()
