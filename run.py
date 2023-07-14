@@ -2,7 +2,8 @@ import random
 
 def hangman():
 
-    word = "apple"
+    words = ["apple", "banana", "cherry", "orange", "pear"]
+    word = random.choice(words)
     guesses = []
     tries = len(word)
 
