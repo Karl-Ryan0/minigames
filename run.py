@@ -13,7 +13,8 @@ def hangman():
             if guess not in guesses:
                 guesses.append(guess)
                 print(guesses)
-                tries -= 1
+                if guess not in word:
+                    tries -= 1
                 hangman_board = ""
                 for letter in word:
                     if letter in guesses:
