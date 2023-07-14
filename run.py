@@ -48,7 +48,12 @@ def adventure():
    delay_text("Welcome to the adventure game! You wake up in a strange room.")
    delay_text("You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
    delay_text("What would you like to do?") 
-   return
+   delay_text("1. Open the door to the left")
+   print("2. Open the door to the right")
+   print("3. Check the bookshelf")
+   print("4. Check the cabinet.")
+
+   adventure_choice_ = input(" Enter 1, 2, 3 or 4:")
 
 
 def main():
