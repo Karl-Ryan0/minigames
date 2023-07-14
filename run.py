@@ -92,9 +92,14 @@ def adventure():
     room_one()
 
 def memory():
-        sequence = random.randint(1, 9)
+        sequence = str(random.randint(1, 9))
         print(sequence)
-
+        entry = input("Guess here...")
+        if entry == sequence:
+            print("Correct! Moving to next level")
+        else:
+            print(entry, sequence)
+            print("Wrongo!")
 
 def main():
     while True:
