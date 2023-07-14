@@ -5,7 +5,8 @@ def hangman():
     words = ["apple", "banana", "cherry", "orange", "pear"]
     word = random.choice(words)
     guesses = []
-    tries = len(word)
+    tries = len(word) +2
+    print(f'Welcome to hangman! You have {tries} tries to guess the word. You win if you unmask the whole word, and fail if you run out of lives. Good luck!')
 
     while tries > 0:
         guess = input("Enter your choice:").lower()
