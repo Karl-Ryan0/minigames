@@ -9,6 +9,8 @@ def hangman():
 
     while tries > 0:
         guess = input("Enter your choice:").lower()
+        if guess == "exit":
+            return
         if len(guess) == 1:
             if guess not in guesses:
                 guesses.append(guess)
