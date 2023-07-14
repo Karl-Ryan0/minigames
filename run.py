@@ -45,15 +45,23 @@ def hangman():
         delay_text(f'Sorry, you did not guess the word! The word was {word}.')
 
 def adventure():
-   delay_text("Welcome to the adventure game! You wake up in a strange room.")
-   delay_text("You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
-   delay_text("What would you like to do?") 
-   delay_text("1. Open the door to the left")
-   print("2. Open the door to the right")
-   print("3. Check the bookshelf")
-   print("4. Check the cabinet.")
+    key1_have = False
+    gun_have = False
+    delay_text("Welcome to the adventure game! You wake up in a strange room.")
+    delay_text("You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
+    delay_text("What would you like to do?") 
+    delay_text("1. Open the door to the left")
+    print("2. Open the door to the right")
+    print("3. Check the bookshelf")
+    print("4. Check the cabinet.")
 
-   adventure_choice_ = input(" Enter 1, 2, 3 or 4:")
+    adventure_choice = input(" Enter 1, 2, 3 or 4:")
+
+    if adventure_choice == "1":
+        key1_have = True
+        print("You find a key")
+        print(key1_have)
+        return
 
 
 def main():
@@ -72,4 +80,4 @@ def main():
             break
         else:
             delay_text("Not a valid selection!")
-main()
+adventure()
