@@ -1,7 +1,9 @@
 import random
-
+import os
 import time
 
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def delay_text(text, delay=1):
     time.sleep(delay)
@@ -103,20 +105,25 @@ def adventure():
 def memory():
     lives = 3
     sequence = str(random.randint(1, 9))
+    print("Welcome to the game! You'll be presented with a progressively harder number, and only two seconds to memorise it. Good luck!")
+    time.sleep(10)
     while lives > 0:
-        delay_text(sequence)
+        print(sequence)
+        time.sleep(2)
+        clear()
         entry = input("Guess here (or type 'exit' to quit): ")
         if entry.lower() == "exit":
             return
         if entry == sequence:
-            delay_text("Correct! Moving to the next level")
+            print("Correct! Moving to the next level")
+            time.sleep(2)
             sequence += str(random.randint(1, 9))
-            delay_text(sequence)
         else:
-            delay_text(entry, sequence)
-            delay_text("Wrong guess!")
+            print(entry, sequence)
+            print("Wrong guess!")
+            time.sleep(2)
             lives -= 1
-    delay_text("Game over! You ran out of lives.")
+    print("Game over! You ran out of lives.")
 
 
 
