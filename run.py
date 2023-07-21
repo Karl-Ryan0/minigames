@@ -192,6 +192,7 @@ def adventure():
                 endgame()
     room_one()
 
+
 def memory():
     # Initialize player's lives and the first sequence to memorize
     lives = 3
@@ -250,14 +251,14 @@ def main():
             adventure()
             break
         elif choice == "memory":
-            delay_text("Memory chosen")
+            delay_text("Loading Memory game")
             break
         else:
             delay_text("Not a valid selection!")
 
 
 def endgame():
-    # Simple function to end the game at player reqyest
+    # Simple function to end the game at player request or game over
     delay_text("Thanks for playing!")
     sys.exit()
 
