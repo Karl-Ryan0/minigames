@@ -94,10 +94,14 @@ def adventure():
         while True:
             adventure_choice = input(" Enter 1, 2, 3, 4 or 5, or 'exit' to quit:")
             if adventure_choice == "1":
-                key1_have = True
-                delay_text("You find a key")
-                delay_text(key1_have)
-                return
+                if key1_have == False:
+                    key1_have = True
+                    delay_text("You open the door on the right. This room is bare except for a small key.")
+                    delay_text("You take the small key and return to the main room.")
+                    room_one()
+                else:
+                    delay_text("This room is now empty")
+                    room_one()
             elif adventure_choice == "2":
                 if key1_have == False:
                     delay_text("This door is locked")
@@ -125,9 +129,6 @@ def adventure():
         room_one()
 
     room_one()
-
-
-
 
 def memory():
     # Initialize player's lives and the first sequence to memorize
@@ -169,9 +170,6 @@ def memory():
 
     # Game over message
     print("Game over! You ran out of lives.")
-
-
-
 
 def main():
     """ 
