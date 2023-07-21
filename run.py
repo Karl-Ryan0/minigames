@@ -102,6 +102,7 @@ def adventure():
 
 
 
+
 def memory():
     lives = 3
     sequence = str(random.randint(1, 9))
@@ -111,9 +112,15 @@ def memory():
         print(sequence)
         time.sleep(2)
         clear()
-        entry = input("Guess here (or type 'exit' to quit): ")
-        if entry.lower() == "exit":
-            return
+        while True:
+            entry = input("Guess here (or type 'exit' to quit): ")
+            if entry.lower() == "exit":
+                return
+            try:
+                int(entry)
+                break
+            except ValueError:
+                print("Invalid input! Please enter a number.")
         if entry == sequence:
             print("Correct! Moving to the next level")
             time.sleep(2)
@@ -123,6 +130,7 @@ def memory():
             print("Wrong guess!")
             time.sleep(2)
             lives -= 1
+
     print("Game over! You ran out of lives.")
 
 
