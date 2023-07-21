@@ -1,6 +1,7 @@
 import random
 import os
 import time
+import string
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -11,40 +12,43 @@ def delay_text(text, delay=1):
 
 
 def hangman():
-
     words = ["apple", "banana", "cherry", "orange", "pear"]
     word = random.choice(words)
     guesses = []
+    hangman_board = "_" * len(word)
     tries = len(word) + 2
-    delay_text(
-        f'Welcome to hangman! You have {tries} tries to guess the word. You win if you unmask the whole word, and fail if you run out of lives. Good luck!')
+    delay_text(f'Welcome to hangman! You have {tries} tries to guess the word. You win if you unmask the whole word, and fail if you run out of lives. Good luck!')
 
     while tries > 0:
         guess = input("Enter your choice:").lower()
         if guess == "exit":
             return
-        if len(guess) == 1:
-            if guess not in guesses:
-                guesses.append(guess)
-                delay_text(guesses)
-                if guess not in word:
-                    tries -= 1
-                hangman_board = ""
-                for letter in word:
-                    if letter in guesses:
-                        hangman_board += letter
-                    else:
-                        hangman_board += "_"
+        try:
+            # Check if the input is a single letter and is an alphabet character
+            if len(guess) == 1 and guess.isalpha():
+                if guess not in guesses:
+                    guesses.append(guess)
+                    delay_text(guesses)
+                    if guess not in word:
+                        tries -= 1
+                    hangman_board = ""
+                    for letter in word:
+                        if letter in guesses:
+                            hangman_board += letter
+                        else:
+                            hangman_board += "_"
+                else:
+                    delay_text("You already guessed that!")
             else:
-                delay_text("You already guessed that!")
-        else:
-            delay_text("You cannot enter more than one letter!")
+                delay_text("Please enter a single letter!")
+        except ValueError:
+            delay_text("Invalid input! Please enter a single letter.")
+
         delay_text(hangman_board)
         delay_text(f'You have {tries} tries remaining')
 
         if hangman_board == word:
-            delay_text(
-                f'Congratultions! You guessed the word {word} correctly!')
+            delay_text(f'Congratulations! You guessed the word {word} correctly!')
             break
 
     if tries == 0:
@@ -154,4 +158,4 @@ def main():
             delay_text("Not a valid selection!")
 
 
-memory()
+hangman()
