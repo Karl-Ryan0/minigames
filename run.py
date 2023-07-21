@@ -63,7 +63,7 @@ def hangman():
         # This is the win condition
         if hangman_board == word:
             delay_text(f'Congratulations! You guessed the word {word} correctly!')
-            break
+            endgame()
     # This is the lose condition
     if tries == 0:
         delay_text(f'Sorry, you did not guess the word! The word was {word}.')
@@ -98,7 +98,7 @@ def adventure():
 
         while True:
             adventure_choice = input(" Enter 1, 2, 3, 4 or 5, or 'exit' to quit:")
-            #This handles the first player choice.
+            # This handles the first player choice.
             if adventure_choice == "1":
                 if smallkey_have == False:
                     smallkey_have = True
@@ -108,14 +108,14 @@ def adventure():
                 else:
                     delay_text("This room is now empty")
                     room_one()
-            #This handles the second player choice.
+            # This handles the second player choice.
             elif adventure_choice == "2":
                 if smallkey_have == False:
                     delay_text("This door is locked")
                     room_one()
                 else:
                     room_two()
-            #This handles the third player choice.
+            # This handles the third player choice.
             elif adventure_choice == "3":
                 if gun_have == True:
                     delay_text("There's nothing here anymore.")
@@ -124,7 +124,7 @@ def adventure():
                     gun_have = True
                     delay_text("You find a gun in the bookshelf.")
                     room_one()
-            #This handles the fourth player choice.
+            # This handles the fourth player choice.
             elif adventure_choice == "4":
                 if torch_have == True:
                     delay_text("There's nothing here anymore.")
@@ -133,24 +133,28 @@ def adventure():
                     torch_have = True
                     delay_text("You find a torch in the cabinet.")
                     room_one()
-            #This handles the fifth player choice.
+            # This handles the fifth player choice.
             elif adventure_choice == "5":
                 wait_in_room()
-            #This handles the player quitting the game.
+            # This handles the player quitting the game.
             elif adventure_choice.lower() == "exit":
                 endgame()
             else:
                 print("Please enter a valid selection:")
-    #This handles the player choosing to do nothing.
+
+
+    # This handles the player choosing to do nothing.
     def wait_in_room():
         delay_text("You wait in the room for 5 minutes. Eventually the water starts to rise, and you struggle against the doors.")
         delay_text("Your vision starts to fade to black but you lose consiousness.")
         endgame()
 
+
     def victory():
         delay_text("Congratulations!")
         delay_text("The monster is defeated, and you have earned your freedom.")
         endgame()
+
 
     def room_two():
         """
@@ -178,8 +182,8 @@ def adventure():
                 delay_text("After several misses, one of your rounds finally hits it mark.")
                 delay_text("The beast staggers, and finally utters one last cry of pain.")
                 delay_text("As it falls, you see a door behind it.")
-                input = input("Do you attempt to go through it? y/n")
-                if input == "y":
+                last_choice = input("Do you attempt to go through it? y/n")
+                if last_choice == "y":
                     victory()
                 else:
                     wait_in_room()
@@ -229,6 +233,7 @@ def memory():
     # Game over message
     print("Game over! You ran out of lives.")
 
+
 def main():
     """ 
     This is the main function. It will offer the player with a choice of several minigames to choose from.
@@ -250,8 +255,10 @@ def main():
         else:
             delay_text("Not a valid selection!")
 
+
 def endgame():
+    # Simple function to end the game at player reqyest
     delay_text("Thanks for playing!")
     sys.exit()
 
-adventure()
+main()
