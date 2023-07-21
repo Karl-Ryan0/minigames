@@ -69,11 +69,17 @@ def hangman():
 
 
 def adventure():
+    """
+    This is the adventure game. It features a simple inventory system.
+    """
     key1_have = False
     gun_have = False
     delay_text("Welcome to the adventure game! You wake up in a strange room.")
 
     def room_one():
+        """
+        This is the entry room for the game.
+        """
         nonlocal key1_have
         nonlocal gun_have
         delay_text(
@@ -86,7 +92,7 @@ def adventure():
         print("5. Wait around to see what happens")
 
         while True:
-            adventure_choice = input(" Enter 1, 2, 3, 4 or 5:")
+            adventure_choice = input(" Enter 1, 2, 3, 4 or 5, or 'exit' to quit:")
             if adventure_choice == "1":
                 key1_have = True
                 delay_text("You find a key")
@@ -108,6 +114,9 @@ def adventure():
                 return
             elif adventure_choice == "5":
                 wait_in_room()
+            elif adventure_choice.lower() == "exit":
+                delay_text("Thanks for playing!")
+                break
             else:
                 print("Please enter a valid selection:")
 
@@ -165,6 +174,9 @@ def memory():
 
 
 def main():
+    """ 
+    This is the main function. It will offer the player with a choice of several minigames to choose from.
+    """
     while True:
         choice = input(
             "Make your choice. You can choose between hangman, adventure or memory: ").lower()
@@ -183,4 +195,4 @@ def main():
             delay_text("Not a valid selection!")
 
 
-hangman()
+adventure()
