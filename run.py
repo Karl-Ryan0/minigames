@@ -104,19 +104,19 @@ def memory():
     lives = 3
     sequence = str(random.randint(1, 9))
     while lives > 0:
-        print(sequence)
+        delay_text(sequence)
         entry = input("Guess here (or type 'exit' to quit): ")
         if entry.lower() == "exit":
             return
         if entry == sequence:
-            print("Correct! Moving to the next level")
+            delay_text("Correct! Moving to the next level")
             sequence += str(random.randint(1, 9))
-            print(sequence)
+            delay_text(sequence)
         else:
-            print(entry, sequence)
-            print("Wrong guess!")
+            delay_text(entry, sequence)
+            delay_text("Wrong guess!")
             lives -= 1
-    print("Game over! You ran out of lives.")
+    delay_text("Game over! You ran out of lives.")
 
 
 
