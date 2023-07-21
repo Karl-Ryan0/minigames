@@ -83,8 +83,11 @@ def adventure():
         """
         This is the entry room for the game.
         """
-        nonlocal key1_have
+        nonlocal smallkey_have
+        nonlocal largekey_have
         nonlocal gun_have
+        nonlocal gun_have
+
         delay_text(
             "You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
         delay_text("What would you like to do?")
@@ -98,8 +101,8 @@ def adventure():
             adventure_choice = input(" Enter 1, 2, 3, 4 or 5, or 'exit' to quit:")
             #This handles the first player choice.
             if adventure_choice == "1":
-                if key1_have == False:
-                    key1_have = True
+                if smallkey_have == False:
+                    smallkey_have = True
                     delay_text("You open the door on the right. This room is bare except for a small key.")
                     delay_text("You take the small key and return to the main room.")
                     room_one()
@@ -108,7 +111,7 @@ def adventure():
                     room_one()
             #This handles the second player choice.
             elif adventure_choice == "2":
-                if key1_have == False:
+                if smallkey_have == False:
                     delay_text("This door is locked")
                     return
                 else:
@@ -121,23 +124,29 @@ def adventure():
                 return
             #This handles the fourth player choice.
             elif adventure_choice == "4":
-                delay_text("Nothing here")
+                torch_have = True
+                delay_text("You find a torch in the cabinet")
                 return
             #This handles the fifth player choice.
             elif adventure_choice == "5":
                 wait_in_room()
             #This handles the player quitting the game.
             elif adventure_choice.lower() == "exit":
-                delay_text("Thanks for playing!")
-                break
+                endgame()
             else:
                 print("Please enter a valid selection:")
     #This handles the player choosing to do nothing.
     def wait_in_room():
-        delay_text("You wait in the room for 5 minutes. Nothing happens.")
-        room_one()
+        delay_text("You wait in the room for 5 minutes. Eventually the water starts to rise, and you struggle against the doors.")
+        delay_text("Your vision starts to fade to black but you lose consiousness.")
+        endgame()
+
 
     def room_two():
+        nonlocal smallkey_have
+        nonlocal largekey_have
+        nonlocal gun_have
+        nonlocal gun_have
         if torch_have == False:
             delay_text("You step into a cold, dark room. You can't see anything, so you turn to leave.")
             delay_text("However, the door has locked behind you.")
@@ -147,7 +156,7 @@ def adventure():
                 delay_text("You fire the gun wildly but to no avail.")
             delay_text("You feel one more blow to the back of the head and start to lose consiousness.")
             endgame()
-
+    room_one()
 
 def memory():
     # Initialize player's lives and the first sequence to memorize
@@ -213,5 +222,6 @@ def main():
 
 def endgame():
     print("Thanks for playing!")
-    sys.exit
+    sys.exit()
+
 adventure()
