@@ -121,11 +121,18 @@ def adventure():
 
 
 def memory():
+    # Initialize player's lives and the first sequence to memorize
     lives = 3
     sequence = str(random.randint(1, 9))
-    print("Welcome to the game! You'll be presented with a progressively harder number, and only two seconds to memorise it. Good luck!")
+
+    # Welcome message and instructions
+    print("Welcome to the memory game!")
+    print("You'll be presented with a progressively harder number, and only two seconds to memorize it. Good luck!")
     time.sleep(10)
+
+    # Main game loop
     while lives > 0:
+        # Display the current sequence to memorize
         print(sequence)
         time.sleep(2)
         clear()
@@ -134,21 +141,26 @@ def memory():
             if entry.lower() == "exit":
                 return
             try:
+                # Check if the input is a number (digit)
                 int(entry)
                 break
             except ValueError:
                 print("Invalid input! Please enter a number.")
+
+        # Check if the guess is correct
         if entry == sequence:
             print("Correct! Moving to the next level")
             time.sleep(2)
+            # Generate the next sequence by adding another digit
             sequence += str(random.randint(1, 9))
         else:
-            print(entry, sequence)
             print("Wrong guess!")
             time.sleep(2)
             lives -= 1
 
+    # Game over message
     print("Game over! You ran out of lives.")
+
 
 
 
