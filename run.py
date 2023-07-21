@@ -4,14 +4,25 @@ import time
 import string
 
 def clear():
+    """
+    This will clear the screen and prevent the player from seeing the answer in memory permanently.
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def delay_text(text, delay=1):
+    """
+    This delay text transitioning inside the games.
+    """
     time.sleep(delay)
     print(text)
 
 
 def hangman():
+    """
+    This is a hangman game the player can choose to play.
+    There are a few words programmed in.
+    The user has to guess what the word is from the list, and only has so many guesses to get it correct.
+    """
     words = ["apple", "banana", "cherry", "orange", "pear", "grape", "watermelon", "strawberry", "avocado", "peach", "blackberry"]
     word = random.choice(words)
     guesses = []
@@ -19,12 +30,14 @@ def hangman():
     tries = len(word) + 2
     delay_text(f'Welcome to hangman! You have {tries} tries to guess the word. You win if you unmask the whole word, and fail if you run out of lives. Good luck!')
 
+    # This continues the game until the player is out of lives.
     while tries > 0:
         guess = input("Enter your choice:").lower()
+        # This will end the game if the player chooses.
         if guess == "exit":
             return
         try:
-            # Check if the input is a single letter and is an alphabet character
+            # Check if the input is a single letter and is an alphabet character.
             if len(guess) == 1 and guess.isalpha():
                 if guess not in guesses:
                     guesses.append(guess)
@@ -46,11 +59,11 @@ def hangman():
 
         delay_text(hangman_board)
         delay_text(f'You have {tries} tries remaining')
-
+        # This is the win condition
         if hangman_board == word:
             delay_text(f'Congratulations! You guessed the word {word} correctly!')
             break
-
+    # This is the lose condition
     if tries == 0:
         delay_text(f'Sorry, you did not guess the word! The word was {word}.')
 
