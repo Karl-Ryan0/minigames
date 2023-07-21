@@ -36,7 +36,7 @@ def hangman():
         guess = input("Enter your choice:").lower()
         # This will end the game if the player chooses.
         if guess == "exit":
-            return
+            endgame()
         try:
             # Check if the input is a single letter and is an alphabet character.
             if len(guess) == 1 and guess.isalpha():
@@ -86,10 +86,9 @@ def adventure():
         nonlocal smallkey_have
         nonlocal largekey_have
         nonlocal gun_have
-        nonlocal gun_have
+        nonlocal torch_have
 
-        delay_text(
-            "You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
+        delay_text("You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
         delay_text("What would you like to do?")
         delay_text("1. Open the door to the left")
         print("2. Open the door to the right")
@@ -113,20 +112,27 @@ def adventure():
             elif adventure_choice == "2":
                 if smallkey_have == False:
                     delay_text("This door is locked")
-                    return
+                    room_one()
                 else:
                     room_two()
-                    return
             #This handles the third player choice.
             elif adventure_choice == "3":
-                gun_have = True
-                delay_text("You find a gun in the bookshelf")
-                return
+                if gun_have == True:
+                    delay_text("There's nothing here anymore.")
+                    room_one()
+                else:
+                    gun_have = True
+                    delay_text("You find a gun in the bookshelf.")
+                    room_one()
             #This handles the fourth player choice.
             elif adventure_choice == "4":
-                torch_have = True
-                delay_text("You find a torch in the cabinet")
-                return
+                if torch_have == True:
+                    delay_text("There's nothing here anymore.")
+                    room_one()
+                else:
+                    torch_have = True
+                    delay_text("You find a torch in the cabinet.")
+                    room_one()
             #This handles the fifth player choice.
             elif adventure_choice == "5":
                 wait_in_room()
@@ -141,11 +147,18 @@ def adventure():
         delay_text("Your vision starts to fade to black but you lose consiousness.")
         endgame()
 
+    def victory():
+        delay_text("Congratulations!")
+        delay_text("The monster is defeated, and you have earned your freedom.")
+        endgame()
 
     def room_two():
+        """
+        This function will determine if the player has enough items. He will need both the gun and torch or he will meet his end.
+        """
         nonlocal smallkey_have
         nonlocal largekey_have
-        nonlocal gun_have
+        nonlocal torch_have
         nonlocal gun_have
         if torch_have == False:
             delay_text("You step into a cold, dark room. You can't see anything, so you turn to leave.")
@@ -156,6 +169,23 @@ def adventure():
                 delay_text("You fire the gun wildly but to no avail.")
             delay_text("You feel one more blow to the back of the head and start to lose consiousness.")
             endgame()
+        else:
+            delay_text("You step into a cold, dark room. You can't see anything, so you power on your torch.")
+            delay_text("There's something in front of you. Something sinister.")
+            delay_text("You turn to the door but it has locked behind you.")
+            if gun_have == True:
+                delay_text("You open fire on the creature.")
+                delay_text("After several misses, one of your rounds finally hits it mark.")
+                delay_text("The beast staggers, and finally utters one last cry of pain.")
+                delay_text("As it falls, you see a door behind it.")
+                input = input("Do you attempt to go through it? y/n")
+                if input == "y":
+                    victory()
+                else:
+                    wait_in_room()
+            else:
+                delay_text("The last thing you hear is the wild howlings of a monster.")
+                endgame()
     room_one()
 
 def memory():
@@ -177,7 +207,7 @@ def memory():
         while True:
             entry = input("Guess here (or type 'exit' to quit): ")
             if entry.lower() == "exit":
-                return
+                    endgame()
             try:
                 # Check if the input is a number (digit)
                 int(entry)
@@ -221,7 +251,7 @@ def main():
             delay_text("Not a valid selection!")
 
 def endgame():
-    print("Thanks for playing!")
+    delay_text("Thanks for playing!")
     sys.exit()
 
 adventure()
