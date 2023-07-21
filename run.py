@@ -2,6 +2,7 @@ import random
 import os
 import time
 import string
+import sys
 
 def clear():
     """
@@ -72,8 +73,10 @@ def adventure():
     """
     This is the adventure game. It features a simple inventory system.
     """
-    key1_have = False
+    smallkey_have = False
+    largekey_have = False
     gun_have = False
+    torch_have = False
     delay_text("Welcome to the adventure game! You wake up in a strange room.")
 
     def room_one():
@@ -93,6 +96,7 @@ def adventure():
 
         while True:
             adventure_choice = input(" Enter 1, 2, 3, 4 or 5, or 'exit' to quit:")
+            #This handles the first player choice.
             if adventure_choice == "1":
                 if key1_have == False:
                     key1_have = True
@@ -102,33 +106,48 @@ def adventure():
                 else:
                     delay_text("This room is now empty")
                     room_one()
+            #This handles the second player choice.
             elif adventure_choice == "2":
                 if key1_have == False:
                     delay_text("This door is locked")
                     return
                 else:
-                    delay_text("You find another room")
+                    room_two()
                     return
+            #This handles the third player choice.
             elif adventure_choice == "3":
                 gun_have = True
                 delay_text("You find a gun in the bookshelf")
                 return
+            #This handles the fourth player choice.
             elif adventure_choice == "4":
                 delay_text("Nothing here")
                 return
+            #This handles the fifth player choice.
             elif adventure_choice == "5":
                 wait_in_room()
+            #This handles the player quitting the game.
             elif adventure_choice.lower() == "exit":
                 delay_text("Thanks for playing!")
                 break
             else:
                 print("Please enter a valid selection:")
-
+    #This handles the player choosing to do nothing.
     def wait_in_room():
         delay_text("You wait in the room for 5 minutes. Nothing happens.")
         room_one()
 
-    room_one()
+    def room_two():
+        if torch_have == False:
+            delay_text("You step into a cold, dark room. You can't see anything, so you turn to leave.")
+            delay_text("However, the door has locked behind you.")
+            delay_text("You pull on the handle to no avail.")
+            delay_text("As you're struggling, you feel a sickening thump behind you.")
+            if gun_have == True:
+                delay_text("You fire the gun wildly but to no avail.")
+            delay_text("You feel one more blow to the back of the head and start to lose consiousness.")
+            endgame()
+
 
 def memory():
     # Initialize player's lives and the first sequence to memorize
@@ -192,5 +211,7 @@ def main():
         else:
             delay_text("Not a valid selection!")
 
-
+def endgame():
+    print("Thanks for playing!")
+    sys.exit
 adventure()
