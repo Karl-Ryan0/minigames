@@ -12,7 +12,7 @@ def delay_text(text, delay=1):
 
 
 def hangman():
-    words = ["apple", "banana", "cherry", "orange", "pear"]
+    words = ["apple", "banana", "cherry", "orange", "pear", "grape", "watermelon", "strawberry", "avocado", "peach", "blackberry"]
     word = random.choice(words)
     guesses = []
     hangman_board = "_" * len(word)
