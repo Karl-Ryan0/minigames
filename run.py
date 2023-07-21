@@ -2,17 +2,20 @@ import random
 
 import time
 
-def delay_text(text, delay = 1):
+
+def delay_text(text, delay=1):
     time.sleep(delay)
     print(text)
+
 
 def hangman():
 
     words = ["apple", "banana", "cherry", "orange", "pear"]
     word = random.choice(words)
     guesses = []
-    tries = len(word) +2
-    delay_text(f'Welcome to hangman! You have {tries} tries to guess the word. You win if you unmask the whole word, and fail if you run out of lives. Good luck!')
+    tries = len(word) + 2
+    delay_text(
+        f'Welcome to hangman! You have {tries} tries to guess the word. You win if you unmask the whole word, and fail if you run out of lives. Good luck!')
 
     while tries > 0:
         guess = input("Enter your choice:").lower()
@@ -38,21 +41,25 @@ def hangman():
         delay_text(f'You have {tries} tries remaining')
 
         if hangman_board == word:
-            delay_text(f'Congratultions! You guessed the word {word} correctly!')
+            delay_text(
+                f'Congratultions! You guessed the word {word} correctly!')
             break
 
     if tries == 0:
         delay_text(f'Sorry, you did not guess the word! The word was {word}.')
 
+
 def adventure():
     key1_have = False
     gun_have = False
     delay_text("Welcome to the adventure game! You wake up in a strange room.")
+
     def room_one():
         nonlocal key1_have
         nonlocal gun_have
-        delay_text("You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
-        delay_text("What would you like to do?") 
+        delay_text(
+            "You look around and see a door to the right, a door to the left, a bookshelf, and a cabinet.")
+        delay_text("What would you like to do?")
         delay_text("1. Open the door to the left")
         print("2. Open the door to the right")
         print("3. Check the bookshelf")
@@ -84,26 +91,39 @@ def adventure():
                 wait_in_room()
             else:
                 print("Please enter a valid selection:")
-    
+
     def wait_in_room():
         delay_text("You wait in the room for 5 minutes. Nothing happens.")
         room_one()
-    
+
     room_one()
 
+
 def memory():
-        sequence = str(random.randint(1, 9))
+    lives = 3
+    sequence = str(random.randint(1, 9))
+    while lives > 0:
         print(sequence)
-        entry = input("Guess here...")
+        entry = input("Guess here (or type 'exit' to quit): ")
+        if entry.lower() == "exit":
+            return
         if entry == sequence:
-            print("Correct! Moving to next level")
+            print("Correct! Moving to the next level")
+            sequence += str(random.randint(1, 9))
+            print(sequence)
         else:
             print(entry, sequence)
-            print("Wrongo!")
+            print("Wrong guess!")
+            lives -= 1
+    print("Game over! You ran out of lives.")
+
+memory()
+
 
 def main():
     while True:
-        choice = input("Make your choice. You can choose between hangman, adventure or memory: ").lower()
+        choice = input(
+            "Make your choice. You can choose between hangman, adventure or memory: ").lower()
         if choice == "hangman":
             delay_text("Loading Hangman game...")
             hangman()
@@ -117,4 +137,6 @@ def main():
             break
         else:
             delay_text("Not a valid selection!")
+
+
 memory()
