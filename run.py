@@ -99,6 +99,7 @@ def adventure():
     room_one()
 
 
+
 def memory():
     lives = 3
     sequence = str(random.randint(1, 9))
@@ -117,7 +118,6 @@ def memory():
             lives -= 1
     print("Game over! You ran out of lives.")
 
-memory()
 
 
 def main():
