@@ -48,7 +48,6 @@ Error tested for letters or special characters.
 
 ## Features
 
-
 ### Design
 The games are designed to be pick up and play, mostly using interpretations of games that are readily accessible and that the majority of users would be experienced with already. With the adventure game it will repeat the current options in case the user forgets what they're doing.
 
@@ -84,7 +83,6 @@ Among the games included I had hoped to implement a battleship style game, as we
 * The game did not handle invalid input (non-numeric) properly.
   * Implemented a try-except block to catch invalid inputs and prompt the player to enter a number.
 
-
 ### Deployment
 1. Navigate to [https://github.com/Karl-Ryan0/minigames](https://github.com/Karl-Ryan0/minigames).
 2. You can set up your own repository and copy or clone it, or you fork the repository.
@@ -97,9 +95,6 @@ Among the games included I had hoped to implement a battleship style game, as we
 
 Alternatively, the game can be played by navigating to [Heroku](https://minigames-0919640b8832.herokuapp.com/s) where the game is deployed.
 
-
 ### Credits
 * All code was freehand however additional thanks for the people at Mammoth Interactive and CI for the great tutorials.
 * Images on this readme are my own screenshots.
-
-https://minigames-0919640b8832.herokuapp.com/
