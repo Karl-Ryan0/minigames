@@ -60,30 +60,39 @@ Among the games included I had hoped to implement a battleship style game, as we
 ### Validation
 * Tested against PEP8 validation for compliance. Several errors around indentation found but these were minor and corrected easily.
 
-### Testing
+### External Testing
 * My code was sent to friends and family for feedback and testing.
 * All user input is error checked to prevent improper input from the user.
 * As the game was built using a Windows 11 PC, the majority of the testing was done using this machine and VS Code on gitpod, as well as on Heroku.
 
-## Bugs Found
-### Hangman:
+### Internal Testing / Bugs found
+Code was mostly tested on VS Code and PythonTutor with regular PEP8 checks.
 
-* Some words in the word list were too short, causing quick game completions.
-  * Solution: Improved the word selection algorithm to ensure a variety of word lengths.
-* Issue: The "exit" command didn't work as expected during the game.
-  * Solution: Corrected the code to handle the "exit" command and gracefully end the game.
-### Adventure:
+#### Hangman
+* Case sensitivity
+  * Initially the game was case sensitive and a user could fail for trying to spell BANANA instead of banana. There's a check implemented that will force the user input to lowercase, preventing this.
+* Use of special characters and numbers
+  * These were allowed initially and I could add them as my guess. This would not crash the game as it was not looking for anything specific, but it would cost the user a guess. This was corrected by using a catchall if statement to ensure the entry was a letter.
+* Multiple characters
+  * If a user attempted to enter multiple characters, the game would initially interpret the first letter as the guess, for example 'potato' would return 'p' as the guess. I couldn't figure out why this was, so instead of investigating it and trying to make a single word solve the puzzle, I added it to the above catchall.
 
-* The player could access locked rooms without the required items.
-  * Added proper checks for inventory items before granting access to certain rooms.
-* Certain actions did not update the inventory status correctly.
-  * Fixed the inventory update logic to reflect changes accurately.
-## Memory:
+#### Memory
+* Display issues
+  * Initally the game would not attempt to clear the screen and would constantly display the number in question, making the game almost impossible to lose. This was rectified by adding the clear function, which resulted in another error below.
+* Nothing on screen
+  * After resolving the above, now the code executed as intended, but wiped the screen instantly, meaning that the user would never actually see the number that was generated, making the game impossible to solve. This was countered by adding a timer that would clear the screen after 2 seconds, allowing the player to see the number before it disappeared.
 
-* The game did not handle invalid input (non-numeric) properly.
-  * Implemented a try-except block to catch invalid inputs and prompt the player to enter a number.
+#### Adventure
+* Repeating patterns
+  * At first the game would allow the same actions to be taken over and over again which would still display the same text, possibly making the player think that they had several of the same item. This was resolved with a simple check for variables when a player takes an action and respond appropriately if the player has already done this. For example, instead of finding a gun in the bookshelf over and over, the player will be told that there is nothing therre anymore.
+* Variables between areas
+  * Because variables were initially defined in the subfunctions, they would not carry over between other subfunctions and this would cause the game to crash. For example, the gun is needed to get the good ending, but the check in room 2 did not know of any variables and this would cause the game to hang. I had to use nonlocal on the variables to prevent this from happening.
 
-### Deployment
+#### General
+* Game running constantly
+  * Initially there was no way to leave a game that had been started. Added a listener for the word 'exit' converted to lowercase to allow the player to leave the game. On top of this, the game would just stop on completion and need to be restarted, this was resolved using a simple endgame function that will stop the code running.
+
+## Deployment
 1. Navigate to [https://github.com/Karl-Ryan0/minigames](https://github.com/Karl-Ryan0/minigames).
 2. You can set up your own repository and copy or clone it, or you fork the repository.
 3. `git add`, `git commit` and `git push` to a GitHub repository, if necessary.
