@@ -252,6 +252,7 @@ def main():
             break
         elif choice == "memory":
             delay_text("Loading Memory game")
+            memory()
             break
         else:
             delay_text("Not a valid selection!")
